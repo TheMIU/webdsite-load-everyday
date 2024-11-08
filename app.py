@@ -1,10 +1,9 @@
 import requests
-import schedule
 import time
 from datetime import datetime
 
 def check_website():
-    url = "https://miusoft.info"  # Replace with your website URL
+    url = "https://miusoft.info"
     while True:
         try:
             response = requests.get(url, timeout=10)
@@ -18,12 +17,5 @@ def check_website():
             print(f"Failed to load website: {e}. Retrying...")
         time.sleep(5)  # Wait 5 seconds before retrying
 
-# Schedule the check_website function to run twice daily
-schedule.every().day.at("00:00").do(check_website)  # Runs at midnight
-schedule.every().day.at("12:00").do(check_website)  # Runs at noon
-# schedule.every().minute.do(check_website) # to debug
-
-# Run the scheduler
-while True:
-    schedule.run_pending()
-    time.sleep(60)  # Check every minute if it's time to run the task
+# Directly run the function
+check_website()
